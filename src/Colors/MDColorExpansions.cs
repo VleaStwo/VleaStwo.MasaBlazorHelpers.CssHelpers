@@ -1,8 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
-using VleaStwo.MasaBlazorHelpers.CssHelpers;
-
 using mdc = VleaStwo.MasaBlazorHelpers.CssHelpers.Colors.MaterialDesignColors;
+
 
 namespace VleaStwo.MasaBlazorHelpers.CssHelpers.Colors
 {
@@ -30,9 +29,9 @@ namespace VleaStwo.MasaBlazorHelpers.CssHelpers.Colors
         {
             FixDark(ref level);
 
-            return color.GetBackgroundClass(level);
+            return color.Darken(level);
         }
-
+        static string Darken(this mdc color, int level) => color.GetBackgroundClass(level);
         public static string Dark(this DarkLevel level, mdc color) => color.Dark((int)level);
         #endregion
 
@@ -45,8 +44,9 @@ namespace VleaStwo.MasaBlazorHelpers.CssHelpers.Colors
         {
             FixLight(ref level);
 
-            return color.GetBackgroundClass(level);
+            return color.Lighten(level);
         }
+        static string Lighten(this mdc color, int level) => color.GetBackgroundClass(level);
 
         public static string Light(this LightLevel level, mdc color) => color.Light((int)level);
         #endregion
@@ -61,7 +61,7 @@ namespace VleaStwo.MasaBlazorHelpers.CssHelpers.Colors
             }
             FixAccent(ref level);
 
-            return color.GetBackgroundClass(level);
+            return color.GetBackgroundClass(level); // Accent无需修复
         }
 
         public static string Accent(this AccentLevel level, mdc color) => color.Accent((int)level);
@@ -85,9 +85,9 @@ namespace VleaStwo.MasaBlazorHelpers.CssHelpers.Colors
         public static string DarkText(this mdc color, int level)
         {
             FixDark(ref level);
-            return color.GetForegroundClass(level);
+            return color.DarkenText(level);
         }
-
+        static string DarkenText(this mdc color, int level) => color.GetForegroundClass(level);
         public static string DarkText(this DarkLevel level, mdc color) => color.DarkText((int)level);
         #endregion
 
@@ -100,9 +100,9 @@ namespace VleaStwo.MasaBlazorHelpers.CssHelpers.Colors
         {
             FixLight(ref level);
 
-            return color.GetForegroundClass(level);
+            return color.LightenText(level);
         }
-
+        static string LightenText(this mdc color, int level) => color.GetForegroundClass(level);
         public static string LightText(this LightLevel level, mdc color) => color.LightText((int)level);
         #endregion
 
@@ -115,9 +115,8 @@ namespace VleaStwo.MasaBlazorHelpers.CssHelpers.Colors
             }
             FixAccent(ref level);
 
-            return color.GetForegroundClass(level);
+            return color.GetForegroundClass(level); // Accent无需修复
         }
-
         public static string AccentText(this AccentLevel level, mdc color) => color.AccentText((int)level);
 
         #endregion
